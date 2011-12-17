@@ -27,6 +27,7 @@
                 data: null,
                 success: function (res, status, xhr) {
                     logout();
+                    window.location.href = res;
                 }
             });
         });
@@ -53,7 +54,7 @@
                 data: { assertion: assertion },
                 success: function (res, status, xhr) {
                     if (res != null) {
-                        loggedIn(res);
+                        loggedIn(res.email);
                     }
                 },
                 error: function (res, status, xhr) {

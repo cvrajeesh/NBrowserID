@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Web.Security;
 using NBrowserID;
 
@@ -23,8 +24,8 @@ namespace Demo.Controllers
             if (verificationResult.IsVerified)
             {
                 string email = verificationResult.Email;
-                FormsAuthentication.SetAuthCookie(email, true);
-                return Json(email);
+                FormsAuthentication.SetAuthCookie(email, false);
+                return Json(new { email });
             }
 
             return Json(null);
@@ -34,7 +35,7 @@ namespace Demo.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-            return new EmptyResult();
+            return Json(FormsAuthentication.LoginUrl);
         }
     }
 }
