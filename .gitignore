@@ -1,0 +1,10 @@
+[Bb]in/
+
+[Oo]bj
+/
+*.suo
+
+*.user
+App_Data/
+logs/
+_ReSharper.*/

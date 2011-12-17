@@ -1,0 +1,85 @@
+﻿@{
+    var loginCssClass = Request.IsAuthenticated ? "hide" : "show";
+    var loggedViewCssClass = Request.IsAuthenticated ? "show" : "hide";
+}
+
+<div id="login" class="@loginCssClass"></div>
+<div id="loggedinview" class="@loggedViewCssClass">
+<div id="gravatar"></div>
+
+| <a id="logout" href="#logout">Logout</a>
+</div>
+    
+
+
+<script language="javascript">
+    $(document).ready(function () {
+
+        $('#login').click(function () {
+            navigator.id.getVerifiedEmail(gotVerifiedEmail);
+        });
+
+        $('#logout').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/Account/LogOff',
+                data: null,
+                success: function (res, status, xhr) {
+                    logout();
+                }
+            });
+        });
+
+        if (navigator.id && navigator.id.sessions.length > 0) {
+            setDisplayStyle(navigator.id.sessions);
+        }
+    });
+    
+    function setSession(val) {
+        if (navigator.id) {
+            navigator.id.sessions = val ? val : [];
+        }
+    }
+
+    // a handler that is passed an assertion after the user logs in via the
+    // browserid dialog
+    function gotVerifiedEmail(assertion) {
+        // got an assertion, now send it up to the server for verification
+        if (assertion !== null) {
+            $.ajax({
+                type: 'POST',
+                url: '/Account/LogOn',
+                data: { assertion: assertion },
+                success: function (res, status, xhr) {
+                    if (res != null) {
+                        loggedIn(res);
+                    }
+                },
+                error: function (res, status, xhr) {
+                    alert("login failure" + res);
+                }
+            });
+        }
+    }
+
+    function loggedIn(email) {
+        setSession(email);
+        $('#login').toggleClass().removeClass('show').addClass('hide');
+        $('#loggedinview').removeClass('hide').addClass('show');
+        setDisplayStyle(email);
+    }
+    
+    function setDisplayStyle(email) {
+        var iurl = 'http://www.gravatar.com/avatar/' + Crypto.MD5($.trim(email).toLowerCase()) + "?s=20";
+        $("<img>").attr('src', iurl).appendTo($("#gravatar"));
+        $("<span>").html(email).appendTo($("#gravatar"));
+    }
+
+    function  logout() {
+        setSession();
+        $('#login').removeClass('hide').addClass('show');
+        $('#loggedinview').removeClass('show').addClass('hide');
+        $('#gravatar').html('');
+    }
+</script>

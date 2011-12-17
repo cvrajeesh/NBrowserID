@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBrowserID", "NBrowserID\NBrowserID.csproj", "{377437CF-8A76-4331-BCE2-925A35A43A46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{A9D9BD0F-4C3F-435E-8BDD-07ADC6C0B26F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{377437CF-8A76-4331-BCE2-925A35A43A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{377437CF-8A76-4331-BCE2-925A35A43A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{377437CF-8A76-4331-BCE2-925A35A43A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{377437CF-8A76-4331-BCE2-925A35A43A46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9D9BD0F-4C3F-435E-8BDD-07ADC6C0B26F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9D9BD0F-4C3F-435E-8BDD-07ADC6C0B26F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9D9BD0F-4C3F-435E-8BDD-07ADC6C0B26F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9D9BD0F-4C3F-435E-8BDD-07ADC6C0B26F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
