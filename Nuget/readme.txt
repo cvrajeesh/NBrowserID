@@ -8,7 +8,7 @@ A Demo Application can be found in https://github.com/cvrajeesh/NBrowserID
 How to Use BrowserID in ASP.NET MVC Application
 ===============================================
 
-1.	Install NBrowserID if you haven’t done it. In the Package Manager console type 
+1.	Install NBrowserID if you haven't done it. In the Package Manager console type 
 	Install-Package NBrowserID
 	
 2.	Include the BrowserID javascript into your master page or in the view 
