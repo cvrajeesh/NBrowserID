@@ -1,9 +1,8 @@
-NBrowserID
-===========
+Overview
+=========
 
-A Library which helps you to integrate [BrowserID](https://browserid.org) into your Web Application.
-
-Go through Demo application to see how it is done
+Project Home: https://github.com/cvrajeesh/NBrowserID
+A Demo Application can be found in https://github.com/cvrajeesh/NBrowserID
 
 
 How to Use BrowserID in ASP.NET MVC Application
@@ -60,11 +59,5 @@ How to Use BrowserID in ASP.NET MVC Application
 
             return Json(null);
         }
-
-
-References
-----------
-* [Integrating BrowserID In To Your ASP.NET MVC Application](http://www.rajeeshcv.com/post/details/46/integrating-browserid-in-to-your-asp-net-mvc-application)
-
 
 
