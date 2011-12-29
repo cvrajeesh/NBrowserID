@@ -5,6 +5,8 @@ A Library which helps you to integrate [BrowserID](https://browserid.org) into y
 
 Go through Demo application to see how it is done
 
+Try the hosted demo application - [nbrowserid.apphb.com](http://nbrowserid.apphb.com)
+
 
 How to Use BrowserID in ASP.NET MVC Application
 ===============================================
