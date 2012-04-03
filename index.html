@@ -1,0 +1,138 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>NBrowserID</title>
+  <meta name="description" content="BrowserID integration in .Net">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">NBrowserID</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">BrowserID integration in .Net</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/cvrajeesh/NBrowserID/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/cvrajeesh/NBrowserID/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/cvrajeesh/NBrowserID" class="code">fork NBrowserID on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>NBrowserID</h1>
+
+<p>A Library which helps you to integrate <a href="https://browserid.org">BrowserID</a> into your Web Application.</p>
+
+<p>Go through Demo application to see how it is done</p>
+
+<p>Try the hosted demo application - <a href="http://nbrowserid.apphb.com">nbrowserid.apphb.com</a></p>
+
+<h1>How to Use BrowserID in ASP.NET MVC Application</h1>
+
+<ol>
+<li>
+<p>Install NBrowserID if you haven't done it. In the Package Manager console type</p>
+
+<pre><code>Install-Package NBrowserID
+</code></pre>
+</li>
+<li><p>Include the BrowserID javascript(<a href="https://browserid.org/include.js">https://browserid.org/include.js</a>) into your master page or in the view  </p></li>
+<li><p>Add a login button link to your view</p></li>
+<li>
+<p>Hook into its click event and invoke "navigator.id.getVerifiedEmail" method with a call back function</p>
+
+<p>E.g. </p>
+
+<pre><code>$('#login').click(function () {
+        navigator.id.getVerifiedEmail(gotVerifiedEmail);
+});
+</code></pre>
+</li>
+<li>
+<p>In the call back function, pass the assertion back to the MVC application</p>
+
+<p>E.g. the below code will post the assertion to LogOn method on the AccountController    </p>
+
+<pre><code>function gotVerifiedEmail(assertion) {
+        // got an assertion, now send it up to the server for verification
+        if (assertion !== null) {
+                $.ajax({
+                        type: 'POST',
+                        url: '/Account/LogOn',
+                        data: { assertion: assertion },
+        success: function (res, status, xhr) {
+            if (res != null) {
+                // Login is successful and verification is completed. Update the UI
+            }
+        },
+        error: function (res, status, xhr) {
+            alert("login failure" + res);
+        }
+    });
+}
+}
+</code></pre>
+</li>
+<li>
+<p>In the server side, verify the assertion that is received using the NBrowserID library. If the verification is successful, mark the user as logged in</p>
+
+<p>E.g.    </p>
+
+<pre><code>[HttpPost]
+public ActionResult LogOn(string assertion)
+{
+        var authentication = new BrowserIDAuthentication();
+        var verificationResult = authentication.Verify(assertion);
+        if (verificationResult.IsVerified)
+        {               
+                string email = verificationResult.Email;
+                FormsAuthentication.SetAuthCookie(email, false);
+                return Json(new { email });
+        }
+        return Json(null);
+}
+</code></pre>
+</li>
+</ol><h2>References</h2>
+
+<ul>
+<li><a href="http://www.rajeeshcv.com/post/details/46/integrating-browserid-in-to-your-asp-net-mvc-application">Integrating BrowserID In To Your ASP.NET MVC Application</a></li>
+</ul>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/cvrajeesh" class="avatar"><img src="https://secure.gravatar.com/avatar/0a8e64e5c2a6c86650efe9802d8f9262?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="48" height="48"/></a> <a href="https://github.com/cvrajeesh">cvrajeesh</a> maintains <a href="https://github.com/cvrajeesh/NBrowserID">NBrowserID</a></p>
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/cvrajeesh/NBrowserID/tarball/master" class="tar">tar</a><a href="https://github.com/cvrajeesh/NBrowserID/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
